@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Item = () => {
     return (
         <li className="mediaItem">
-            <Link>
+            <Link to="">
                 <div className="cover_img">
                     <img></img>
                 </div>

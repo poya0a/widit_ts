@@ -1,5 +1,5 @@
 import React from 'react';
-import MediaList from '../pages/MediaList';
+import MediaList from '../common/MediaList';
 
 const Main = () => {
   return (

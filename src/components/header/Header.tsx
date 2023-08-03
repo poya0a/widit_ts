@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import logoB from '../assets/images/logo/logo_b.png'
-import logoW from '../assets/images/logo/logo_w.png'
-import SearchPopup from 'popup/SearchPopup';
+import { useSetRecoilState, useRecoilValue } from "recoil";
+import { showSearchPopup } from '../../atoms';
+
+
+import logoB from '../../assets/images/logo/logo_b.png'
+import logoW from '../../assets/images/logo/logo_w.png'
+import SearchPopup from '../common/popoup/SearchPopup';
 
 const Header = () => {
 
-  const [ showSearchPopup, setShowSearchPopup ] = useState(false);
+  const setShowSearchPopup = useSetRecoilState(showSearchPopup);
+  const searchPopup = useRecoilValue(showSearchPopup)
 
   const onClickSearchPopup = () => {
     setShowSearchPopup(true);
@@ -25,22 +30,22 @@ const Header = () => {
           <nav className="main_menu">
             <ul>
               <li>
-                <Link className='menu_btn' aria-label="영화" title="영화">
+                <Link to="" className='menu_btn' aria-label="영화" title="영화">
                   영화
                 </Link>
               </li>
               <li>
-                <Link className='menu_btn' aria-label="TV" title="TV">
+                <Link to="" className='menu_btn' aria-label="TV" title="TV">
                   TV
                 </Link>
               </li>
               <li>
-                <Link className='menu_btn' aria-label="책" title="책">
+                <Link to="" className='menu_btn' aria-label="책" title="책">
                   책
                 </Link>
               </li>
               <li>
-                <Link className='menu_btn' aria-label="웹툰" title="웹툰">
+                <Link to="" className='menu_btn' aria-label="웹툰" title="웹툰">
                   웹툰
                 </Link>
               </li>
@@ -50,7 +55,7 @@ const Header = () => {
             <div className="search_box">
               <i />
               <input type="text" placeholder="검색어를 입력하세요." onClick={onClickSearchPopup}></input>
-              { showSearchPopup && <SearchPopup></SearchPopup> }
+              { searchPopup && <SearchPopup></SearchPopup> }
             </div>
             <Link to="/" className="login" aria-label="로그인">로그인</Link>
             <Link to="/" className="join" aria-label="회원가입">회원가입</Link>
