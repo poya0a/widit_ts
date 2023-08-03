@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Suspense } from 'react';
+import { Route, Routes } from 'react-router-dom';
 
-function App() {
+import './assets/styles/style.scss';
+
+import Loading from './components/common/Loading';
+import Layout from './components/layout/Layout';
+import Main from './components/main/Main';
+// import Search from 'pages/Search';
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div id="app">
+       <Suspense fallback={<Loading />}>
+          <Routes>
+            <Route element={<Layout />}>
+              <Route exact path="/" element={<Main />} />
+              {/* <Route exact path="/search" element={<Search />} /> */}
+            </Route>
+          </Routes>
+        </Suspense>
     </div>
   );
-}
+};
 
 export default App;
