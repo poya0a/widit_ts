@@ -1,9 +1,8 @@
 import React from 'react';
-import List from '../common/MediaList';
-import ListSlide from '../common/ListSlide';
 import { Link } from 'react-router-dom';
 
 const Search = () => {
+    console.log(React)
     return (
         <div id="search">
             <section className="sec search_title">
@@ -20,7 +19,7 @@ const Search = () => {
                         </ul>
                     </nav>
                 </div>
-                <ListSlide></ListSlide>
+                {/* <ListSlide ListData={} /> */}
             </section>
 
             <section className="sec search_category">

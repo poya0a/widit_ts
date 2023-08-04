@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Item = () => {
+const MediaItem = () => {
+    console.log(React)
     return (
         <li className="mediaItem">
             <Link to="">
@@ -19,4 +20,4 @@ const Item = () => {
     );
 };
 
-export default Item;
+export default MediaItem;

@@ -8,7 +8,8 @@ const requests: Requests = {
   NEWS: '/api/news',
   NOTICE: '/api/notice',
   EVENT: '/api/event',
-
+  DAILY: 'http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json',
+  WEEKLY: 'http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json'
 };
 
 export default requests;

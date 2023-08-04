@@ -1,4 +1,4 @@
-import { atom, selector } from 'recoil';
+import { atom } from 'recoil';
 
 export const loadState = atom({
   key: "loadState",
@@ -13,4 +13,14 @@ export const showSearchPopup = atom({
 export const showMemberPopup = atom({
   key: "showMemberPopup",
   default: false
+})
+
+export const boxOfficeDailyData = atom({
+  key: "boxOfficeDailyData",
+  default: {}
+})
+
+export const boxOfficeWeeklyData = atom({
+  key: "boxOfficeWeeklyData",
+  default: {}
 })

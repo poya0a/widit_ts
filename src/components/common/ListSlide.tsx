@@ -1,23 +1,26 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import Item from './MediaItem';
+import React, { useState } from 'react';
 
-const ListSlide = () => {
+const ListSlide = ({ ListData }: { ListData: object }) => {
+    console.log(React)
+    console.log(ListData, 'ListData')
+
+    const [list, setList] = useState([]);
+
+    // useEffect(()=> {
+    //     if(ListData){
+    //         setList(ListData?.boxOfficeResult?.dailyBoxOfficeList);
+    //     }
+    // },[ListData])
+
     return (
         <div id="listSlide">
             <div className="slide_wrap">
                 <div className="slide_container">
                     <ul className="list">
-                        <Item></Item>
-                        <Item></Item>
-                        <Item></Item>
-                        <Item></Item>
-                        <Item></Item>
-                        <Item></Item>
-                        <Item></Item>
-                        <Item></Item>
-                        <Item></Item>
-                        <Item></Item>
+                        {/* {ListData.result.boxOfficeResult.dailyBoxOfficeList.map(() => {
+                            <Item />
+                            })
+                        } */}
                     </ul>
                 </div>
             </div>

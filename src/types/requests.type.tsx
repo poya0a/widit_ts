@@ -4,5 +4,7 @@ export interface Requests {
     NEWS: string;
     NOTICE: string;
     EVENT: string;
-  }
+    DAILY: string;
+    WEEKLY: string;
+}
   
