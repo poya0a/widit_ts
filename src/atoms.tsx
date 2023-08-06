@@ -15,12 +15,13 @@ export const showMemberPopup = atom({
   default: false
 })
 
-export const boxOfficeDailyData = atom({
-  key: "boxOfficeDailyData",
-  default: {}
-})
+type CallbackFunction = (result: object) => void;
 
-export const boxOfficeWeeklyData = atom({
-  key: "boxOfficeWeeklyData",
-  default: {}
+export const getState = atom({
+  key: "getState",
+  default: {
+    targetUrl: "",
+    queryParams: {},
+    callback: undefined as CallbackFunction | undefined
+  }
 })
