@@ -16,7 +16,7 @@ const Join = () => {
         }));
     }
 
-    const { onError, register, handleSubmit, getValues } = useFormHook();
+    const { onError, onSubmit, register, handleSubmit, getValues } = useFormHook();
     const [registerName, setRegisterName] = useState<string>("");
     const [registerEmail, setRegisterEmail] = useState<string>("");
     const [registerPassword, setRegisterPassword] = useState<string>("");
@@ -24,13 +24,13 @@ const Join = () => {
     return (
         <div id="join">
             <h3 className="member_title">회원가입</h3>
-            <form onSubmit={handleSubmit( onError )}>
+            <form onSubmit={handleSubmit( onError, onSubmit )}>
                 <div>
                     <label>
                         <input 
                         id="joinName" 
                         placeholder="이름"
-                        {...register("joinName")}
+                        {...register("joinName", { required: true })}
                         ></input>
                     </label>
                 </div>
@@ -39,7 +39,7 @@ const Join = () => {
                         <input 
                         id="joinEmail" 
                         placeholder="이메일"
-                        {...register("joinEmail")}
+                        {...register("joinEmail", { required: true })}
                         ></input>
                     </label>
                 </div>
@@ -48,7 +48,7 @@ const Join = () => {
                         <input 
                         id="joinPassword" 
                         placeholder="비밀번호"
-                        {...register("joinPassword")}
+                        {...register("joinPassword", { required: true })}
                         ></input>
                     </label>
                 </div>

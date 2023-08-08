@@ -9,7 +9,6 @@ import Join from './Join';
 import Login from './Login';
 
 const MemberPopup = () => {
-    console.log(React)
 
     const memberPopup = useRecoilValue(showMemberPopup)
 

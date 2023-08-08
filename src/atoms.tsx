@@ -25,6 +25,19 @@ export const showMemberPopup: RecoilState<MemberPopup> = atom<MemberPopup>({
   }
 });
 
+export interface AlertPopup {
+  openPopup: boolean;
+  message: string;
+}
+
+export const showAlertPopup: RecoilState<AlertPopup> = atom<AlertPopup>({
+  key: "showAlertPopup",
+  default: {
+    openPopup: false,
+    message: ""
+  }
+});
+
 export interface BoxOfficeData {
   boxOfficeResult: {
     boxofficeType: string;

@@ -3,6 +3,8 @@ import { useSetRecoilState } from "recoil";
 
 import { showMemberPopup } from '../../../atoms';
 
+import useFormHook from 'utils/hook/useFormHook';
+
 const Login = () => {
     const setShowMemberPopup = useSetRecoilState(showMemberPopup);
 
@@ -15,18 +17,27 @@ const Login = () => {
         }));
     }
 
+    const { onError, onSubmit, register, handleSubmit, getValues } = useFormHook();
     return (
         <div id="login">
             <h3 className="member_title">로그인</h3>
-            <form>
+            <form onSubmit={handleSubmit( onError, onSubmit )}>
                 <div>
                     <label>
-                        <input id="loginId" placeholder="아이디"></input>
+                        <input
+                        id="loginId"
+                        placeholder="아이디"
+                        {...register("loginId", { required: true})}
+                        ></input>
                     </label>
                 </div>
                 <div>
                     <label>
-                        <input id="loginPassword" placeholder="비밀번호"></input>
+                        <input
+                        id="loginPassword" 
+                        placeholder="비밀번호"
+                        {...register("loginPassword", { required: true })}
+                        ></input>
                     </label>
                 </div>
                 <button type="submit">로그인</button>
