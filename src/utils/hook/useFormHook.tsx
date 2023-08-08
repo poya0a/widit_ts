@@ -1,45 +1,50 @@
-// import { useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 // import { useAppDispatch, useAppSelector } from '../../store';
 // import { actShowAPopUp } from '../../utile/slice/alartPopUpSlice';
 // import { postForm } from '../slice/postFormSlice';
 
-// import React from 'react';
+interface ErrorObject {
+  type: string;
+  message: string;
+}
 
-// const useFormHook = () => {
+interface RequiredError {
+  type: 'required';
+  message: string;
+}
+
+const useFormHook = () => {
 //   const dispatch = useAppDispatch();
+  const { register, handleSubmit, getValues } = useForm();
+  console.log(register)
+  const onError = (error: Record<string, ErrorObject>) => {
+   
+    const requiredErr = Object.entries(error)
+      .map(([key, value]) => value as RequiredError)
+      .filter((v) => v.type === 'required');
+// console.log(requiredErr)
+    // if (requiredErr.length) {
+    //   dispatch(
+    //     actShowAPopUp({
+    //       message: requiredErr[0].message,
+    //       cntBtn: 1,
+    //       img: '',
+    //       btnName: {},
+    //     }),
+    //   );
+    // }
+  };
 
-//   const onError = (error) => {
-//     const requiredErr = Object.entries(error)
-//       .map((v) => {
-//         return v[1];
-//       })
-//       .filter((v) => {
-//         return v.type === 'required';
-//       });
+  const onResult = () => {
 
-//     if (requiredErr.length) {
-//       dispatch(
-//         actShowAPopUp({
-//           message: requiredErr[0].message,
-//           cntBtn: 1,
-//           img: '',
-//           btnName: {},
-//         }),
-//       );
-//     }
-//   };
-//   return { onError };
-// };
+  }
 
-// export default useFormHook;
-import React from 'react';
-
-const ß = () => {
-    return (
-        <div>
-            
-        </div>
-    );
+  return {
+    onError,
+    register,
+    handleSubmit,
+    getValues,
+  };
 };
 
-export default ß;
+export default useFormHook;

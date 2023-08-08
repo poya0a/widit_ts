@@ -1,21 +1,40 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { useSetRecoilState, useRecoilValue } from "recoil";
-import { showSearchPopup } from '../../atoms';
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { showMemberPopup, showSearchPopup } from '../../atoms';
 
-
-import logoB from '../../assets/images/logo/logo_b.png'
-import logoW from '../../assets/images/logo/logo_w.png'
-import SearchPopup from '../common/popoup/SearchPopup';
+import logoB from '../../assets/images/logo/logo_b.png';
+import logoW from '../../assets/images/logo/logo_w.png';
+import SearchPopup from '../common/popup/SearchPopup';
 
 const Header = () => {
-
+  console.log(React)
   const setShowSearchPopup = useSetRecoilState(showSearchPopup);
   const searchPopup = useRecoilValue(showSearchPopup)
 
   const onClickSearchPopup = () => {
     setShowSearchPopup(true);
   }
+
+  const setShowMemberPopup = useSetRecoilState(showMemberPopup);
+
+  const onClickLoginPopup = () => {
+    setShowMemberPopup((prevState) => ({
+      ...prevState,
+      openPopup: true,
+      loginPopup: true,
+      joinPopup: false,
+    }));
+  };
+  
+  const onClickJoinPopup = () => {
+    setShowMemberPopup((prevState) => ({
+      ...prevState,
+      openPopup: true,
+      loginPopup: false,
+      joinPopup: true,
+    }));
+  };
 
   return (
     <header id="header">
@@ -57,8 +76,8 @@ const Header = () => {
               <input type="text" placeholder="검색어를 입력하세요." onClick={onClickSearchPopup}></input>
               { searchPopup && <SearchPopup></SearchPopup> }
             </div>
-            <Link to="/" className="login" aria-label="로그인">로그인</Link>
-            <Link to="/" className="join" aria-label="회원가입">회원가입</Link>
+            <Link to="/" className="login" aria-label="로그인" onClick={onClickLoginPopup}>로그인</Link>
+            <Link to="/" className="join" aria-label="회원가입" onClick={onClickJoinPopup}>회원가입</Link>
           </div>
         </div>
       </div>

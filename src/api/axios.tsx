@@ -11,7 +11,7 @@ const ax: AxiosInstance = axios.create({
 const AxiosInterceptor = ({ children }: { children: React.ReactNode }) => {
     const navigate = useNavigate();
     const setLoadState = useSetRecoilState(loadState);
-    const [isSet, setIsSet] = useState(false);
+    const [isSet, setIsSet] = useState<boolean>(false);
 
     useEffect(() => {
         const pending = (config: any) => {

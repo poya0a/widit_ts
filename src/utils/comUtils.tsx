@@ -1,5 +1,6 @@
 import { AxiosResponse } from 'axios';
 import axios from '../api/axios';
+import { BoxOfficeData } from '../atoms';
 
 interface ComUtils {
     callAxiosGet : CallAxiosGetFunction;
@@ -9,14 +10,14 @@ interface ComUtils {
 type CallAxiosGetFunction = (
     targetUrl: string,
     queryParams?: Record<string, string>,
-    callback?: ( result: object ) => void
+    callback?: ( result: BoxOfficeData ) => void
 ) => void;
 
 type CallAxiosPostFunction = (
     targetUrl: string,
     queryParams?: Record<string, string>,
     formData?: FormData,
-    callback?: ( result: object ) => void
+    callback?: ( result: BoxOfficeData ) => void
 ) => void;
 
 const comUtils: ComUtils = {
@@ -24,12 +25,13 @@ const comUtils: ComUtils = {
     callAxiosGet: async (
       targetUrl: string,
       queryParams?: Record<string, string>,
-      callback?: (result: object) => void
+      callback?: (result: BoxOfficeData) => void
     ) => {
         try {
-            const response: AxiosResponse<object> = await axios.get(targetUrl, { params: queryParams });
+            const response: AxiosResponse<BoxOfficeData> = await axios.get(targetUrl, { params: queryParams });
+            const data: BoxOfficeData = response.data;
             if (callback) {
-                callback(response.data);
+                callback(data);
             }
         } catch (error) {
             console.error('Error:', error);
@@ -40,13 +42,13 @@ const comUtils: ComUtils = {
         targetUrl: string,
         queryParams?: Record<string, string>,
         formData?: FormData | undefined,
-        callback?: ( result: object ) => void
+        callback?: ( result: BoxOfficeData ) => void
     ) => {
         try {
-            const response: AxiosResponse<object> = await axios.post(targetUrl, formData, { params: queryParams });
-        
+            const response: AxiosResponse<BoxOfficeData> = await axios.post(targetUrl, formData, { params: queryParams });
+            const data: BoxOfficeData = response.data;
             if (callback) {
-              callback(response.data);
+              callback(data);
             }
         } catch (error) {
             console.error('Error:', error);
