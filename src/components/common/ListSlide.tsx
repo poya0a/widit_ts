@@ -7,7 +7,6 @@ interface ButtonState {
 }
 
 const ListSlide = ({ ListData }: { ListData: object[] | undefined }) => {
-    console.log(React)
     
     const [buttonState, setButtonState] = useState<ButtonState>({
         left: false,

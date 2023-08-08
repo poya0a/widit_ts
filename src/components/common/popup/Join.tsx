@@ -5,8 +5,6 @@ import useFormHook from 'utils/hook/useFormHook';
 import { showMemberPopup } from '../../../atoms';
 
 const Join = () => {
-    console.log(React)
-
     const setShowMemberPopup = useSetRecoilState(showMemberPopup);
 
     const onclickLogin = () => {

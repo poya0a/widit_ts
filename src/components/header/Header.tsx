@@ -8,7 +8,6 @@ import logoW from '../../assets/images/logo/logo_w.png';
 import SearchPopup from '../common/popup/SearchPopup';
 
 const Header = () => {
-  console.log(React)
   const setShowSearchPopup = useSetRecoilState(showSearchPopup);
   const searchPopup = useRecoilValue(showSearchPopup)
 

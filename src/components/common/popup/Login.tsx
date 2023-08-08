@@ -4,8 +4,6 @@ import { useSetRecoilState } from "recoil";
 import { showMemberPopup } from '../../../atoms';
 
 const Login = () => {
-    console.log(React)
-
     const setShowMemberPopup = useSetRecoilState(showMemberPopup);
 
     const onclickJoin = () => {

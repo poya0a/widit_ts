@@ -8,7 +8,6 @@ import ListSlide from './ListSlide';
 // import { getState } from '../../atoms';
 
 const MediaList = () => {
-console.log(React)
     const setDailyState = useSetRecoilState(boxOfficeDailyData);
     const setWeeklyState = useSetRecoilState(boxOfficeWeeklyData);
 

@@ -35,9 +35,9 @@ const useFormHook = () => {
     // }
   };
 
-  const onResult = () => {
+  // const onResult = () => {
 
-  }
+  // }
 
   return {
     onError,

@@ -9,7 +9,6 @@ import Footer from '../footer/Footer';
 import Header from '../header/Header';
 
 function Layout() {
-  console.log(React)
   const memberPopup = useRecoilValue(showMemberPopup)
   return (
     <>

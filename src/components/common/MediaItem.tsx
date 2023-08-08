@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const MediaItem = ({ data }: {data: object | undefined}) => {
-    console.log(React)
     const rank:string = (data as any).rank;
     const movieNm:string = (data as any).movieNm;
     const audiAcc:string = (data as any).audiAcc;

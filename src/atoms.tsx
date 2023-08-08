@@ -135,16 +135,3 @@ export const boxOfficeWeeklyData: RecoilState<BoxOfficeData> = atom<BoxOfficeDat
     }
   }
 });
-
-
-
-// type CallbackFunction = (result: object) => void;
-
-// export const getState = atom({
-//   key: "getState",
-//   default: {
-//     targetUrl: "",
-//     queryParams: {},
-//     callback: undefined as CallbackFunction | undefined
-//   }
-// })

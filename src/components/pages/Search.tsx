@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Search = () => {
-    console.log(React)
     return (
         <div id="search">
             <section className="sec search_title">
