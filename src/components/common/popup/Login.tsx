@@ -1,20 +1,38 @@
+import "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import React from "react";
 import { useSetRecoilState } from "recoil";
 
+import { authService } from "api/firebase";
+import useFormHook from "utils/hook/useFormHook";
 import { showMemberPopup } from "../../../atoms";
 
-import useFormHook from "utils/hook/useFormHook";
+interface UserData {
+  email: string;
+  password: string;
+}
 
-export const loginFn = () => {
-  // const auth = getAuth();
-  //   signInWithEmailAndPassword(auth, data.id, data.password)
-  //     .then((userCredential) => {
-  //       const user = userCredential.user;
-  //     })
-  //     .catch((error) => {
-  //       const errorCode = error.code;
-  //       const errorMessage = error.message;
-  //     });
+export const loginFn = async (data: UserData) => {
+  try {
+    const signInCredential = await signInWithEmailAndPassword(
+      authService,
+      data.email,
+      data.password
+    );
+
+    const signedInUser = signInCredential.user;
+
+    sessionStorage.setItem("token", await signedInUser.getIdToken());
+    sessionStorage.setItem("displayName", signedInUser.displayName || "");
+    window.location.reload();
+  } catch (error: any) {
+    const errorCode = error.code;
+    if (errorCode == "auth/user-not-found") {
+      alert("가입되지 않은 이메일입니다.");
+    } else if (errorCode == "auth/wrong-password") {
+      alert("비밀번호가 올바르지 않습니다.");
+    }
+  }
 };
 
 const Login = () => {

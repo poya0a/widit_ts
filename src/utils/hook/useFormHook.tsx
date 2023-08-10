@@ -1,9 +1,11 @@
 import "firebase/auth";
+import { fetchSignInMethodsForEmail } from "firebase/auth";
 import { useForm } from "react-hook-form";
 import { useSetRecoilState } from "recoil";
 
 import { joinFn } from "components/common/popup/Join";
 import { loginFn } from "components/common/popup/Login";
+import { authService } from "../../api/firebase";
 import { showAlertPopup } from "../../atoms";
 
 interface element {
@@ -39,6 +41,17 @@ const regExp: regExpObject = {
 
 type SubmitType = "join" | "login";
 
+interface JoinData {
+  name: string;
+  email: string;
+  password: string;
+}
+
+interface LoginData {
+  email: string;
+  password: string;
+}
+
 const useFormHook = () => {
   const { register, handleSubmit, getValues, setError, clearErrors } =
     useForm();
@@ -66,9 +79,36 @@ const useFormHook = () => {
       }));
     } else {
       if (type === "join") {
-        joinFn();
+        try {
+          const signInMethods = await fetchSignInMethodsForEmail(
+            authService,
+            data.email.toString()
+          );
+          if (signInMethods.length < 1) {
+            const userData: JoinData = {
+              name: data.name.toString(),
+              email: data.email.toString(),
+              password: data.password.toString(),
+            };
+            joinFn(userData);
+          } else {
+            setShowAlertPopup((prevState) => ({
+              ...prevState,
+              openPopup: true,
+              message: `중복된 이메일입니다. \n다시 입력해주세요.`,
+            }));
+          }
+        } catch (error) {
+          console.log(error);
+          console.error("Error checking email duplicate:", error);
+          return false;
+        }
       } else if (type === "login") {
-        loginFn();
+        const userData: LoginData = {
+          email: data.email.toString(),
+          password: data.password.toString(),
+        };
+        loginFn(userData);
       }
     }
   };

@@ -1,0 +1,10 @@
+#mediadetail {
+    div {
+        &.head_container {}
+        &.info_container {}
+        &.cast_container {}
+        &.comment_container {}
+        &.gallery_container {}
+        &.work_recommendation {}
+    }
+}

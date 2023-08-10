@@ -1,20 +1,49 @@
 import "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
 import React from "react";
 import { useSetRecoilState } from "recoil";
 
+import { authService } from "api/firebase";
 import useFormHook from "utils/hook/useFormHook";
 import { showMemberPopup } from "../../../atoms";
 
-export const joinFn = () => {
-  const auth = getAuth();
-  signInWithEmailAndPassword(auth, data.id, data.password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
+interface UserData {
+  name: string;
+  email: string;
+  password: string;
+}
+
+export const joinFn = async (data: UserData) => {
+  try {
+    const userCredential = await createUserWithEmailAndPassword(
+      authService,
+      data.email,
+      data.password
+    );
+    const user = userCredential.user;
+
+    await updateProfile(user, {
+      displayName: data.name,
     });
+
+    const signInCredential = await signInWithEmailAndPassword(
+      authService,
+      data.email,
+      data.password
+    );
+
+    const signedInUser = signInCredential.user;
+
+    sessionStorage.setItem("token", await signedInUser.getIdToken());
+    sessionStorage.setItem("displayName", signedInUser.displayName || "");
+    window.location.reload();
+  } catch (error: any) {
+    const errorCode = error.code;
+  }
 };
 
 const Join = () => {

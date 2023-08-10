@@ -1,21 +1,45 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { showMemberPopup, showSearchPopup } from '../../atoms';
+import { loginState, showMemberPopup, showSearchPopup } from "../../atoms";
 
-import logoB from '../../assets/images/logo/logo_b.png';
-import logoW from '../../assets/images/logo/logo_w.png';
-import SearchPopup from '../common/popup/SearchPopup';
+import logoB from "../../assets/images/logo/logo_b.png";
+import logoW from "../../assets/images/logo/logo_w.png";
+import SearchPopup from "../common/popup/SearchPopup";
 
 const Header = () => {
+  console.log(React);
   const setShowSearchPopup = useSetRecoilState(showSearchPopup);
-  const searchPopup = useRecoilValue(showSearchPopup)
+  const searchPopup = useRecoilValue(showSearchPopup);
 
   const onClickSearchPopup = () => {
     setShowSearchPopup(true);
-  }
+  };
 
   const setShowMemberPopup = useSetRecoilState(showMemberPopup);
+  const setLoginState = useSetRecoilState(loginState);
+  const readLoginState = useRecoilValue(loginState);
+
+  const [token, setToken] = useState<string | null>(null);
+  const [displayName, setDisplayName] = useState<string | null>(null);
+
+  useEffect(() => {
+    const storedToken = sessionStorage.getItem("token");
+    const storedDisplayName = sessionStorage.getItem("displayName");
+
+    setToken(storedToken);
+    setDisplayName(storedDisplayName);
+
+    if (storedToken && storedDisplayName) {
+      setLoginState(true);
+      setShowMemberPopup((prevState) => ({
+        ...prevState,
+        openPopup: false,
+        loginPopup: false,
+        joinPopup: false,
+      }));
+    }
+  }, []);
 
   const onClickLoginPopup = () => {
     setShowMemberPopup((prevState) => ({
@@ -25,7 +49,7 @@ const Header = () => {
       joinPopup: false,
     }));
   };
-  
+
   const onClickJoinPopup = () => {
     setShowMemberPopup((prevState) => ({
       ...prevState,
@@ -35,35 +59,46 @@ const Header = () => {
     }));
   };
 
+  const onClickLogout = () => {
+    setLoginState(false);
+    sessionStorage.removeItem("token");
+    sessionStorage.removeItem("displayName");
+  };
+
   return (
     <header id="header">
       <div className="wrap">
         <div className="container">
           <Link to="/" aria-label="홈으로 이동">
             <h1 className="logo">
-              <img className="logo_img" src={logoB} alt="WIDIT"/>
-              <img className="logo_img" style={{display : "none"}} src={logoW} alt="WIDIT"/>
+              <img className="logo_img" src={logoB} alt="WIDIT" />
+              <img
+                className="logo_img"
+                style={{ display: "none" }}
+                src={logoW}
+                alt="WIDIT"
+              />
             </h1>
           </Link>
           <nav className="main_menu">
             <ul>
               <li>
-                <Link to="" className='menu_btn' aria-label="영화" title="영화">
+                <Link to="" className="menu_btn" aria-label="영화" title="영화">
                   영화
                 </Link>
               </li>
               <li>
-                <Link to="" className='menu_btn' aria-label="TV" title="TV">
+                <Link to="" className="menu_btn" aria-label="TV" title="TV">
                   TV
                 </Link>
               </li>
               <li>
-                <Link to="" className='menu_btn' aria-label="책" title="책">
+                <Link to="" className="menu_btn" aria-label="책" title="책">
                   책
                 </Link>
               </li>
               <li>
-                <Link to="" className='menu_btn' aria-label="웹툰" title="웹툰">
+                <Link to="" className="menu_btn" aria-label="웹툰" title="웹툰">
                   웹툰
                 </Link>
               </li>
@@ -72,11 +107,31 @@ const Header = () => {
           <div className="side_bar">
             <div className="search_box">
               <i />
-              <input type="text" placeholder="검색어를 입력하세요." onClick={onClickSearchPopup}></input>
-              { searchPopup && <SearchPopup></SearchPopup> }
+              <input
+                type="text"
+                placeholder="검색어를 입력하세요."
+                onClick={onClickSearchPopup}
+              ></input>
+              {searchPopup && <SearchPopup></SearchPopup>}
             </div>
-            <Link to="/" className="login" aria-label="로그인" onClick={onClickLoginPopup}>로그인</Link>
-            <Link to="/" className="join" aria-label="회원가입" onClick={onClickJoinPopup}>회원가입</Link>
+            {!readLoginState && (
+              <>
+                <button className="login" onClick={onClickLoginPopup}>
+                  로그인
+                </button>
+                <button className="join" onClick={onClickJoinPopup}>
+                  회원가입
+                </button>
+              </>
+            )}
+            {readLoginState && (
+              <>
+                <button className="user_name">{displayName} 님</button>
+                <button className="logout" onClick={onClickLogout}>
+                  로그아웃
+                </button>
+              </>
+            )}
           </div>
         </div>
       </div>
