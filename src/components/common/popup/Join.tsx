@@ -47,7 +47,6 @@ export const joinFn = async (data: UserData) => {
 };
 
 const Join = () => {
-  console.log(React);
   const setShowMemberPopup = useSetRecoilState(showMemberPopup);
 
   const onclickLogin = () => {

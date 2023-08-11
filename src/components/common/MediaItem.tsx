@@ -6,7 +6,6 @@ const MediaItem = ({ data }: { data: object | undefined }) => {
   const movieNm: string = (data as any).movieNm;
   const audiAcc: string = (data as any).audiAcc;
   const movieCd: string = (data as any).movieCd;
-  console.log(React);
   return (
     <li className="mediaItem">
       <Link to={"/contents/" + movieCd}>

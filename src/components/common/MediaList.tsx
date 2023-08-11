@@ -6,12 +6,12 @@ import {
   boxOfficeWeeklyData,
   todayState,
   weekendState,
+  BoxOfficeData,
 } from "../../atoms";
 import comUtils from "../../utils/comUtils";
 import ListSlide from "./ListSlide";
 
 const MediaList = () => {
-  console.log(React);
   const setDailyState = useSetRecoilState(boxOfficeDailyData);
   const setWeeklyState = useSetRecoilState(boxOfficeWeeklyData);
 
@@ -19,10 +19,10 @@ const MediaList = () => {
   const weekend = useRecoilValue(weekendState);
 
   useEffect(() => {
-    const dailtList = comUtils.callAxiosGet(
+    const dailyList = comUtils.callAxiosGet(
       requests.DAILY,
       { key: "e53e2081cf896f3809c6a427ef1c2901", targetDt: today },
-      (result) => setDailyState(result)
+      (result) => setDailyState(result as BoxOfficeData)
     );
     const weeklyList = comUtils.callAxiosGet(
       requests.WEEKLY,
@@ -31,7 +31,7 @@ const MediaList = () => {
         targetDt: weekend,
         weekGb: "0",
       },
-      (result) => setWeeklyState(result)
+      (result) => setWeeklyState(result as BoxOfficeData)
     );
   }, []);
 

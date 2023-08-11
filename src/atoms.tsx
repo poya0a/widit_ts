@@ -183,3 +183,130 @@ export const boxOfficeWeeklyData: RecoilState<BoxOfficeData> =
       },
     },
   });
+
+export interface movieDetailData {
+  movieInfoResult: {
+    movieInfo: {
+      actors: [
+        {
+          cast: string;
+          castEn: string;
+          peopleNm: string;
+          peopleNmEn: string;
+        },
+      ];
+      audits: [
+        {
+          auditNo: string;
+          watchGradeNm: string;
+        },
+      ];
+      companys: [
+        {
+          companyCd: string;
+          companyNm: string;
+          companyNmEn: string;
+          companyPartNm: string;
+        },
+      ];
+      directors: [
+        {
+          peopleNm: string;
+          peopleNmEn: string;
+        },
+      ];
+      genres: [
+        {
+          genreNm: string;
+        },
+      ];
+      movieCd: string;
+      movieNm: string;
+      movieNmEn: string;
+      movieNmOg: string;
+      nations: [
+        {
+          nationNm: string;
+        },
+      ];
+      openDt: string;
+      prdtStatNm: string;
+      prdtYear: string;
+      showTm: string;
+      showTypes: [
+        {
+          showTypeGroupNm: string;
+          showTypeNm: string;
+        },
+      ];
+      staffs: [];
+      typeNm: string;
+    };
+    source: string;
+  };
+}
+
+export const movieData: RecoilState<movieDetailData> = atom<movieDetailData>({
+  key: "movieData",
+  default: {
+    movieInfoResult: {
+      movieInfo: {
+        actors: [
+          {
+            cast: "",
+            castEn: "",
+            peopleNm: "",
+            peopleNmEn: "",
+          },
+        ],
+        audits: [
+          {
+            auditNo: "",
+            watchGradeNm: "",
+          },
+        ],
+        companys: [
+          {
+            companyCd: "",
+            companyNm: "",
+            companyNmEn: "",
+            companyPartNm: "",
+          },
+        ],
+        directors: [
+          {
+            peopleNm: "",
+            peopleNmEn: "",
+          },
+        ],
+        genres: [
+          {
+            genreNm: "",
+          },
+        ],
+        movieCd: "",
+        movieNm: "",
+        movieNmEn: "",
+        movieNmOg: "",
+        nations: [
+          {
+            nationNm: "",
+          },
+        ],
+        openDt: "",
+        prdtStatNm: "",
+        prdtYear: "",
+        showTm: "",
+        showTypes: [
+          {
+            showTypeGroupNm: "",
+            showTypeNm: "",
+          },
+        ],
+        staffs: [],
+        typeNm: "",
+      },
+      source: "",
+    },
+  },
+});

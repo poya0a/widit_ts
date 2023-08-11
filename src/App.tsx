@@ -12,7 +12,6 @@ import Main from "./components/main/Main";
 import Search from "./components/pages/Search";
 
 const App = () => {
-  console.log(React);
   return (
     <div id="app">
       <AxiosInterceptor>
