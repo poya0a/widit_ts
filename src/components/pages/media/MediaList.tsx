@@ -7,9 +7,9 @@ import {
   todayState,
   weekendState,
   BoxOfficeData,
-} from "../../atoms";
-import comUtils from "../../utils/comUtils";
-import ListSlide from "./ListSlide";
+} from "../../../atoms";
+import comUtils from "../../../utils/comUtils";
+import ListSlide from "../../common/ListSlide";
 
 const MediaList = () => {
   const setDailyState = useSetRecoilState(boxOfficeDailyData);

@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import axios from "../api/axios";
-import { BoxOfficeData, movieDetailData } from "../atoms";
+import { BoxOfficeData, movieDetailData, artistListData, artistDetailData } from "../atoms";
 
 interface ComUtils {
   callAxiosGet: CallAxiosGetFunction;
@@ -10,7 +10,7 @@ interface ComUtils {
 type CallAxiosGetFunction = (
   targetUrl: string,
   queryParams?: Record<string, string>,
-  callback?: (result: BoxOfficeData | movieDetailData) => void
+  callback?: (result: BoxOfficeData | movieDetailData | artistListData | artistDetailData) => void
 ) => void;
 
 type CallAxiosPostFunction = (
@@ -31,7 +31,7 @@ const comUtils: ComUtils = {
         targetUrl,
         { params: queryParams }
       );
-      const data: BoxOfficeData | movieDetailData = response.data;
+      const data: BoxOfficeData | movieDetailData | artistListData | artistDetailData = response.data;
       if (callback) {
         callback(data);
       }

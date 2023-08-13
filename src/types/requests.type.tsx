@@ -7,5 +7,7 @@ export interface Requests {
   DAILY: string;
   WEEKLY: string;
   MOVIEDETAIL: string;
+  ARTISLIST: string;
+  ARTISTDETAIL: string;
   NAVER: string;
 }

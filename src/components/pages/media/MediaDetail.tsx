@@ -3,8 +3,9 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 
 import requests from "api/requests";
-import { movieData, movieDetailData } from "../../atoms";
-import comUtils from "../../utils/comUtils";
+import { movieData, movieDetailData } from "../../../atoms";
+import comUtils from "../../../utils/comUtils";
+import CastItem from "../../common/CastItem";
 
 const MediaDetail = () => {
   const { movieCd } = useParams<string>();
@@ -26,7 +27,7 @@ const MediaDetail = () => {
   }, [movieCd]);
 
   const detailState = useRecoilValue(movieData);
-  console.log(detailState);
+
   return (
     <div id="mediadetail">
       <section className="head_container">
@@ -147,6 +148,14 @@ const MediaDetail = () => {
       </section>
       <section className="cast_container">
         <h3 className="container_title">출연/제작</h3>
+        <div className="cast_box">
+          {detailState.movieInfoResult.movieInfo.directors.map((item, index) => {
+            return <CastItem key={index} data={item} />
+          })}
+          {detailState.movieInfoResult.movieInfo.actors.map((item, index) => {
+            return <CastItem key={index} data={item} />
+          })}
+        </div>
       </section>
       <section className="comment_container">
         <h3 className="container_title">코멘트</h3>

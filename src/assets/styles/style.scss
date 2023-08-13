@@ -4,12 +4,15 @@
 @import 'common/layout';
 @import 'common/main';
 @import 'common/listSlide';
-@import 'common/mediaItem';
-@import 'common/mediaDetail';
+@import 'common/castItem';
 @import 'common/footer';
 
 //pages
 @import 'pages/mediaList';
+@import 'pages/mediaItem';
+@import 'pages/mediaDetail';
+@import 'pages/artistDetail';
+@import 'pages/filmos';
 @import 'pages/search';
 
 //popup

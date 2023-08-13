@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import arrow from '../../assets/images/btn/arrow_btn.svg';
-import Item from './MediaItem';
+import Item from '../pages/media/MediaItem';
 interface ButtonState {
     left: boolean;
     right: boolean;

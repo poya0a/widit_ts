@@ -203,6 +203,14 @@
         &.cast_container {
             width: 1400px;
             margin: auto;
+            .cast_box {
+                margin-top: 15px;
+                display: flex;
+                flex-flow: column wrap;
+                align-content: flex-start;
+                height: 240px;
+                overflow: hidden;
+            }
         }
         &.comment_container {
             width: 1400px;

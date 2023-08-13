@@ -14,6 +14,8 @@ const requests: Requests = {
     "https://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json",
   MOVIEDETAIL:
     "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json",
+  ARTISLIST : "http://www.kobis.or.kr/kobisopenapi/webservice/rest/people/searchPeopleList.json",
+  ARTISTDETAIL : "http://www.kobis.or.kr/kobisopenapi/webservice/rest/people/searchPeopleInfo.json",
   NAVER: "https://openapi.naver.com/v1/search/movie.json",
 };
 

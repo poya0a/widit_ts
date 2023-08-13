@@ -310,3 +310,77 @@ export const movieData: RecoilState<movieDetailData> = atom<movieDetailData>({
     },
   },
 });
+
+export interface artistListData {
+  peopleListResult: {
+    peopleList: [
+      {
+        filmoNames: string;
+        peopleCd: string;
+        peopleNm: string;
+        peopleNmEn: string;
+        repRoleNm: string;
+      }
+    ]
+  }
+}
+
+export const artistList: RecoilState<artistListData> = atom<artistListData>({
+  key: "artistList",
+  default: {
+    peopleListResult: {
+      peopleList: [
+        {
+          filmoNames: "",
+          peopleCd: "",
+          peopleNm: "",
+          peopleNmEn: "",
+          repRoleNm: "",
+        }
+      ]
+    }
+  }
+});
+
+export interface artistDetailData {
+  peopleInfoResult: {
+    peopleInfo: {
+      filmos: [
+        {
+          movieCd: string;
+          movieNm: string;
+          moviePartNm: string;
+        }
+      ];
+      homepages: [];
+      peopleCd: string;
+      peopleNm: string;
+      peopleNmEn: string;
+      repRoleNm: string;
+      sex: string;
+    }
+  }
+}
+
+export const artistDetail: RecoilState<artistDetailData> = atom<artistDetailData>({
+  key: "artistDetail",
+  default: {
+    peopleInfoResult: {
+      peopleInfo: {
+        filmos: [
+          {
+            movieCd: "",
+            movieNm: "",
+            moviePartNm: "",
+          }
+        ],
+        homepages: [],
+        peopleCd: "",
+        peopleNm: "",
+        peopleNmEn: "",
+        repRoleNm: "",
+        sex: "",
+      }
+    }
+  }
+});

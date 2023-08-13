@@ -1,0 +1,26 @@
+.filmos {
+    height: 110px;
+    cursor: pointer;
+    > td {
+        position: relative;
+        height: 100%;
+        > p {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+        }
+        > .filmos_img {
+            width: 62px;
+            height: 90px;
+            margin: 10px auto;
+            border-radius: 5px;
+            background-color: black;
+            img {
+                width: 62px;
+                height: 90px;
+                border-radius: 5px;
+            }
+        }
+    }
+}
